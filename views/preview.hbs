@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Mock Sendiblue E-mails - Preview</title>
+  <link href="/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="h-screen">
+  <div class="flex flex-row h-full">
+    {{#with email}}
+    <div class="flex flex-col">
+      <a href="/" class="bg-blue-500 text-white py-1 px-4 text-center" type="button">
+        Voltar
+      </a>
+      <div>Momento: {{this.moment}}</div>
+      <div>Emissor: {{this.sender.email}} | {{this.sender.name}}</div>
+      <div>Assunto: {{this.subject}}</div>
+      <div>
+        <span>Para:</span>
+        {{#each to}}
+        <span>{{this.email}} | {{this.name}}</span><br />
+        {{/each}}</div>
+      <div>Tags: {{this.tags}}</div>
+    </div>
+    <div class="w-full h-full border">
+      <iframe class="w-full h-full" src="/{{this.id}}/html"></iframe>
+    </div>
+    {{/with}}
+  </div>
+</body>
+
+</html>

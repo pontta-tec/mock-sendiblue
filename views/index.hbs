@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Mock Sendiblue E-mails</title>
+  <link href="/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <h2 class="text-lg leading-normal font-semibold">Mock Sendiblue mail</h2>
+  <table class="table-auto w-full mt-3">
+    <thead>
+      <tr>
+        <th>Data/Hora</th>
+        <th>Emissor</th>
+        <th>Assunto</th>
+        <th>Para</th>
+        <th>Tags</th>
+        <th style="width: 7rem;">Visutalizar</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each emails}}
+      <tr>
+        <td class="border">{{this.moment}}</td>
+        <td class="border">{{this.sender.email}} | {{this.sender.name}}</td>
+        <td class="border">{{this.subject}}</td>
+        <td class="border">
+          {{#each to}}
+          <span>{{this.email}} | {{this.name}}</span><br />
+          {{/each}}
+        </td>
+        <td class="border">{{this.tags}}</td>
+        <td class="border text-center">
+          <a href="{{this.id}}/preview" class="bg-blue-500 text-white py-1 px-4 rounded"
+            type="button">
+            Visualizar
+          </a>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</body>
+
+</html>
