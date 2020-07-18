@@ -36,6 +36,6 @@ export class AppController {
 
   respone(id: string, moment: Date) {
     const date = format(moment, 'yyyyMMddHHmm');
-    return { messageId: `${date}.${id}<@smtp-relay.mailin.fr>` };
+    return { messageId: `<${date}.${id}@smtp-relay.mailin.fr>` };
   }
 }
