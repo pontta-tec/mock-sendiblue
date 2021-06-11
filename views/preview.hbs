@@ -21,8 +21,42 @@
         <span>Para:</span>
         {{#each to}}
         <span>{{this.email}} | {{this.name}}</span><br />
-        {{/each}}</div>
+        {{/each}}
+      </div>
       <div>Tags: {{this.tags}}</div>
+      <div>
+        <span>Anexos:</span><br />
+        {{#each attachment}}
+
+        <div onclick="url({ 'url': '{{this.url}}', 'content': '{{this.content}}', 'filename': '{{this.name}}' })"
+          class="flex items-center py-2 pl-4 cursor-pointer">
+          <img class="w-4 h-4" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAD8AAAA/CAYAAABXXxDfAAAABmJLR0
+QA/wD/AP+gvaeTAAAEsElEQVRoge3a24tVZRjH8c9sD6VTaoFNlsVQWFGGUUJamGZ0IkqCbrqxIj
+O6SjoXFOI/EN1EXZQEnaODoR00o0grxW4iM4nKGg9YmR08pDYzXTx7j9u1157Zh7X3uMf5wsvsWY
+f3eX7PWu/peRfDDDPMMMMMM6QZMYi2T8Ap6MHBwXCgrUl2LsRVuByXogOji84fxE6sw1p8hG+a5F
+tDGIOFWI/eGso63JWvp6W4ET+pTXSydGG+5r2lNdMhXtmBBB3CdmzM/z1UwT2rRB9xVDITW6U7vg
+ev4U50ptzblj++AG9gb5l6ujCjcRJqYy72K3X2bzyFU6usbyIWY3dKnftwZRZOZ8EM/KPUyZWYVG
+fdHXg/pe69mFVn3XUzCb850rFu3Ce7DiqHx5UGYKfq36jMaMOKhEM9uKdB9hYpDcCHBmkUWJjizK
+IG21ySYnNBg22WcLzoeZv9FHL4NGF3mxonQpXO7U/CFFws2vl83FR0fjeuER1fI+nFGjHzG5U/dq
+KYJ/TgfBGIQ/i3HkMn4xExzezR/wRkST2GauDpAfzpxpd4WDy4ihmBB/DHAAaKh52J9aqpkrPxX4
+X+7cL9osn0yzilPfhA5aXsNFXFyip87MVyoa+PkUW/x2I1pqcY2o8NonMZjXNF+2oTc/nBYBWuFk
+3yW2wWbX0yLlHaCd4gfJ0t9PTRJubeyWhtwe0iMEkuwPM4IwMhtTBNTJ07U86NxR34Ramml5MX35
+xy0XLRk7Yy5Zpx30g1EpsSJz92eChpdUbhE0fq2yg/zM9NnNij/gXJ0cbpSpfJc3KYl7jwGexorm
+8NZxueTRybR/TixRE56pIFGXGZI3WuJ55y8cGWSxhWyFiJNUEbDjicRt6H9gY6MF2ksMuxWryJjW
+Kfww/3ANEeiiOSNqZnRdqavFlL4vaEra05kT0tZloDHRhMLkr8vz2HzxMHb2mSM80mqWttDssSB+
+/Gac3xp2lMFrqKWVbIjGwqOtgu5r9DZYY3WugpHsU24rOcWPg/lrhhNt7B+AoqPy8LDxvEBPFmJ9
+PcjwrdfbyitPftErssacPfFDyXr2ROhc40q7dvF4nNtB2kF9NuGKP8jup+kTt7VbwRyYXQdyLKA9
+EI8R2i6a4Qy/I10nePekVKruwkbhzeHcDBcmWDyPv1R9bix+OrCv1bpoIlei7vxK4KKy0u34vsSj
+myFD8LP1bg0++4VwU5vGIm4CF8Idp1stId4uuJNIPLcavSSNcrPofr8HoZnwqlW8xfHlRZc+yXCZ
+iKa3GFyJ624Ti82Y8TSxP1VCv+SdEPvSfa8p/93Pt23r+pKhulMmGEyNsfTHGoXvFLB7i+8JQXq2
+G3qKp2UIZuPCFWbB/kHWoWK/N2F9did+TAl1TM17ge5+A2MVFqxCdmm0XP/ZYYulqGal/78SJFPh
+NniQ3SzMjyyTeCv/KlIWTR5luWY1p81h8TtOMF6VtIxHd0/W1vdeHXMue2iI50b42+NYUz8YPa1g
+flys+iw2sJsgxASwkvkEUAWlJ4gXoC0NLCC9QSgCEhvEA1ARhSwgtUEoAhKbxAfwEY0sILpAXgmB
+BeoDgAx5TwAp3iW5nOwXLgfzKUrNmQpPRiAAAAAElFTkSuQmCC">
+          <span class="pl-2">{{this.name}}</span>
+        </div>
+        {{/each}}
+      </div>
     </div>
     <div class="w-full h-full border">
       <iframe class="w-full h-full" src="/{{this.id}}/html"></iframe>
@@ -30,5 +64,19 @@
     {{/with}}
   </div>
 </body>
+<script>
+  function url({ url, content, filename }) {
+    if (url) {
+      window.location = url;
+      return;
+    }
+    var link = document.createElement('a');
+    link.download = filename;
+    link.href = 'data:application/octet-stream;base64,' + content;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+  }
+</script>
 
 </html>
