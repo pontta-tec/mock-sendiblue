@@ -4,8 +4,8 @@ export interface Contact {
 }
 
 export interface Attachment {
-  url: string;
-  content: string;
+  url?: string;
+  content?: string;
   name: string;
 }
 
@@ -17,4 +17,5 @@ export interface Email {
   to: Contact[];
   htmlContent: string;
   tags: string[];
+  attachment: Attachment[];
 }

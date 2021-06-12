@@ -17,7 +17,7 @@
         <th>Assunto</th>
         <th>Para</th>
         <th>Tags</th>
-        <th style="width: 7rem;">Visutalizar</th>
+        <th style="width: 7rem;">Visualizar</th>
       </tr>
     </thead>
     <tbody>
@@ -25,7 +25,16 @@
       <tr>
         <td class="border">{{this.moment}}</td>
         <td class="border">{{this.sender.email}} | {{this.sender.name}}</td>
-        <td class="border">{{this.subject}}</td>
+        <td class="border">
+          {{#if this.attachment.length}}
+          <svg class="inline-flex" width="30" height="30" viewBox="0 0 30 30 " fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M9.18147 19C7.89265 18.9946 6.7333 18.2153 6.24166 17.0239C5.75003 15.8325 6.0224 14.4624 6.93233 13.5496L12.3571 8.12485C13.1152 7.4011 14.3083 7.4011 15.0663 8.12485C15.8138 8.87325 15.8138 10.0857 15.0663 10.834L12.8044 13.096C12.5509 13.3131 12.173 13.2985 11.937 13.0625C11.7009 12.8265 11.6863 12.4486 11.9034 12.195L14.1654 9.93311C14.4131 9.68389 14.4131 9.2814 14.1654 9.03218C13.9162 8.78444 13.5137 8.78444 13.2644 9.03218L7.83965 14.457C7.36195 14.9439 7.17901 15.648 7.35927 16.3059C7.53953 16.9638 8.05584 17.4763 8.71503 17.6518C9.37143 17.8217 10.0687 17.6321 10.5488 17.1534L15.9736 11.7286C17.1844 10.475 17.1671 8.4824 15.9347 7.25005C14.7024 6.01771 12.7098 6.00039 11.4562 7.21114L7.39238 11.2749C7.13887 11.492 6.76096 11.4774 6.52495 11.2414C6.28894 11.0054 6.27434 10.6275 6.49144 10.374L10.5552 6.3102C11.6852 5.18022 13.3322 4.73891 14.8758 5.15251C16.4194 5.56612 17.625 6.77179 18.0386 8.31537C18.4522 9.85896 18.0109 11.5059 16.881 12.6359L11.4562 18.0607C10.8538 18.665 10.0347 19.0032 9.18147 19Z"
+              fill="#8C92A5"></path>
+            {{/if}}
+          </svg>
+          {{this.subject}}
+        </td>
         <td class="border">
           {{#each to}}
           <span>{{this.email}} | {{this.name}}</span><br />
@@ -33,8 +42,7 @@
         </td>
         <td class="border">{{this.tags}}</td>
         <td class="border text-center">
-          <a href="{{this.id}}/preview" class="bg-blue-500 text-white py-1 px-4 rounded"
-            type="button">
+          <a href="{{this.id}}/preview" class="bg-blue-500 text-white py-1 px-4 rounded" type="button">
             Visualizar
           </a>
         </td>
@@ -43,5 +51,4 @@
     </tbody>
   </table>
 </body>
-
 </html>
